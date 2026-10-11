@@ -281,6 +281,10 @@ svg {
     max-width: 100%;
 }
 
+img {
+    height: auto;
+}
+
 p + figure:not(:last-child) {
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
