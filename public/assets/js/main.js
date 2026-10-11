@@ -1,3 +1,9 @@
+function updateScrolledHeader() {
+    document.body.classList.toggle("scrolled", window.scrollY > 10);
+}
+window.addEventListener("scroll", updateScrolledHeader, { passive: true });
+window.addEventListener("DOMContentLoaded", updateScrolledHeader);
+
 window.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".fade-in .column > *").forEach(element => {
         var r = element.getBoundingClientRect();

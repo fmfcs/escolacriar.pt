@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Website da **Escola CRIAR** (escolacriar.pt) — escola em Cascais para crianças dos 2 aos 12 anos. Todo o conteúdo está em português.
+Website da **Escola CRIAR** (escolacriar.pt) — escola em Cascais para crianças dos 2 aos 12 anos. O site está em português (`pt/`) e em inglês (`en/`).
 
 Site estático em HTML, CSS e JavaScript, publicado no GitHub Pages. Não há passo de build, nem dependências, nem CMS.
 
@@ -12,38 +12,52 @@ Site estático em HTML, CSS e JavaScript, publicado no GitHub Pages. Não há pa
 
 ## Site (`public/`)
 
-- Uma pasta por página com `index.html`: `index.html` (home), `sobre-nos/`, `projecto-pedagogico/`, `como-funciona/`, `pre-escolar/`, `primeiro-ciclo/`, `segundo-ciclo/`, `contactos/`, `politica-de-privacidade/` (não está no menu). Os URLs públicos são `/sobre-nos`, etc.
-- **Todos os links e caminhos são relativos** (`../assets/css/main.css`, `../contactos/index.html#contacto`), para o site abrir directamente via `file://` sem servidor. Ao criar páginas ou links novos, manter a convenção: uma página dentro de uma pasta usa o prefixo `../`; a home usa caminhos sem prefixo; o CSS em `assets/css/` usa `../../assets/...`. Links para páginas incluem sempre `index.html`.
-- `404.html` — página de erro usada pelo Pages. É a única excepção: mantém caminhos absolutos (`/assets/...`), porque o Pages a serve em qualquer URL.
-- `assets/css/` — `normalize.css`, `variables.css` (design tokens: cores, fontes, espaçamentos), `utilities.css`, `main.css`. `assets/js/main.js` — único ficheiro de JavaScript (menu, Swiper, FAQ). Fontes locais em `assets/fonts/` (DM Sans, DM Mono, Lil Grotesk), ícones SVG em `assets/icons/`.
+- `pt/` e `en/` — uma pasta por língua, com a mesma estrutura: `index.html` (home), `sobre-nos/`, `projecto-pedagogico/`, `como-funciona/`, `pre-escolar/`, `primeiro-ciclo/`, `segundo-ciclo/`, `contactos/` e `politica-de-privacidade/` (não está no menu; tem link no rodapé, junto ao ©). Os URLs públicos são `/pt/sobre-nos/`, `/en/sobre-nos/`, etc.
+- `index.html` na raiz só redirecciona para `pt/index.html`. Os URLs antigos, de antes da separação por línguas (`/sobre-nos`, …), já não existem e dão a página 404.
+- **Todos os links e caminhos são relativos** (`../../assets/css/main.css`, `../contactos/index.html#contacto`), para o site abrir directamente via `file://` sem servidor. Ao criar páginas ou links novos, manter a convenção: nas páginas dentro de `pt/<pagina>/` ou `en/<pagina>/`, os assets e media usam `../../` e as outras páginas da mesma língua `../<pagina>/index.html`; na home de cada língua, os assets usam `../` e as páginas `<pagina>/index.html`; o CSS em `assets/css/` usa `../../assets/...`. Links para páginas incluem sempre `index.html`.
+- **Imagens de fundo em `style`:** usar `background-image: url('...')` directamente, não variáveis CSS (`--bg_image`, `--bg-image`). Um `url()` dentro de uma variável é resolvido a partir de `assets/css/` (onde a variável é usada), não da página, e só funciona por coincidência nas páginas que estão a dois níveis (`pt/<pagina>/`). Foi por isso que a foto do topo da home não aparecia.
+- `404.html` — página de erro usada pelo Pages. É a única excepção: mantém caminhos absolutos (`/assets/...`, `/pt/sobre-nos/`), porque o Pages a serve em qualquer URL.
+- `assets/css/` — `normalize.css`, `variables.css` (design tokens: cores, fontes, espaçamentos), `utilities.css`, `main.css`. `assets/js/main.js` — único ficheiro de JavaScript (menu, cabeçalho fixo, Swiper, FAQ). Fontes locais em `assets/fonts/` (DM Sans, DM Mono, Lil Grotesk), ícones SVG em `assets/icons/`.
 - `media/pages/<pagina>/<hash>/` — fotos e PDFs servidos (regulamento, calendário, preçário). Os nomes das pastas com hash vêm do CMS original; podem ser mantidos. Imagens novas podem ir para `media/pages/<pagina>/` sem hash.
 - `CNAME` liga o domínio ao Pages. `.nojekyll` evita o processamento Jekyll.
 - Swiper 11 vem do CDN jsdelivr. O Meta Pixel (Facebook) está no `<head>` de todas as páginas. O mapa da página de contactos é um iframe do Google Maps.
 
 ### Cabeçalho e rodapé repetidos
 
-Não há templates nem build, por decisão deliberada: o `<head>`, o `<header>` com o menu, o `<footer>` e os `<script>` do fim estão copiados em todas as páginas HTML (9 páginas + `404.html`). Os dados de contacto da escola (morada, telefones, email, redes sociais) estão no rodapé.
+Não há templates nem build, por decisão deliberada: o `<head>`, o `<header>` com o menu, o `<footer>` e os `<script>` do fim estão copiados em todas as páginas HTML (9 em `pt/`, 9 em `en/` e `404.html`). Os dados de contacto da escola (morada, telefones, email, redes sociais) estão no rodapé.
 
-**Regra:** qualquer alteração a um desses blocos tem de ser aplicada em **todos** os ficheiros `index.html` e em `404.html`, ajustando o prefixo dos caminhos (`../` nas páginas em pastas, nenhum na home, `/` na 404). Entre páginas, esses blocos só diferem no `<title>`, na classe `active-page` do item de menu da página actual e nos prefixos.
+**Regra:** qualquer alteração a um desses blocos tem de ser aplicada em **todos** os ficheiros `index.html` de `pt/` e `en/` e em `404.html`, ajustando o prefixo dos caminhos (`../../` nas páginas, `../` na home de cada língua, `/` na 404). Entre páginas da mesma língua, esses blocos só diferem no `<title>`, na classe `active-page` do item de menu da página actual, nos prefixos e no link da bandeira (`lang-switch`), que aponta para a mesma página na outra língua.
 
 Depois de alterar o cabeçalho ou o rodapé, confirmar que ficaram iguais em todas as páginas:
 
 ```sh
 cd public
-for b in header footer; do
-  for f in */index.html; do
-    diff -q <(sed -n "/<$b/,/<\/$b>/p" index.html | sed -E 's/ ?active-page//; s/ class=""//') \
-            <(sed -n "/<$b/,/<\/$b>/p" "$f" | sed -E 's#\.\./##g; s/ ?active-page//; s/ class=""//') >/dev/null \
-      || echo "$b diferente em $f"
+check() {
+  home=$1; shift
+  for b in header footer; do
+    for f in "$@"; do
+      diff -q <(sed -n "/<$b/,/<\/$b>/p" "$home" | grep -v lang-switch | sed -E 's#\.\./##g; s/ ?active-page//; s/ class=""//') \
+              <(sed -n "/<$b/,/<\/$b>/p" "$f" | grep -v lang-switch | sed -E 's#\.\./##g; s/ ?active-page//; s/ class=""//') >/dev/null \
+        || echo "$b diferente em $f"
+    done
   done
-done
+}
+check pt/index.html pt/*/index.html
+check en/index.html en/*/index.html
 ```
 
 Sem output significa que está tudo sincronizado.
 
+### Duas línguas (`pt/` e `en/`)
+
+- `en/` tem uma cópia traduzida de cada página de `pt/`, com os mesmos nomes de pasta. A `404.html` não tem versão inglesa.
+- A bandeira no canto superior direito (`<a class="lang-switch">`, ícones `assets/icons/flag-gb.svg` e `flag-pt.svg`) liga cada página à sua equivalente na outra língua. A 404 liga à home inglesa.
+- Cada par de páginas declara a outra no `<head>` com `<link rel="alternate" hreflang="...">` (`pt-PT`, `en`, `x-default` → `/pt/...`). Cada página tem `canonical` para o seu próprio URL; as inglesas têm `lang="en"` e `og:locale` `en_GB`.
+- **Ao alterar texto numa página de `pt/`, alterar também a página correspondente em `en/`.**
+
 ### Testar e publicar
 
-Testar é abrir `public/index.html` no browser; não há servidor nem build. Publicar é `git commit` + `git push` para `main`; o workflow faz o deploy em cerca de um minuto. O estado dos deploys está em https://github.com/fmfcs/escolacriar.pt/actions.
+Testar é abrir `public/pt/index.html` (ou `public/en/index.html`) no browser; não há servidor nem build. Publicar é `git commit` + `git push` para `main`; o workflow faz o deploy em cerca de um minuto. O estado dos deploys está em https://github.com/fmfcs/escolacriar.pt/actions.
 
 ## Avisos
 

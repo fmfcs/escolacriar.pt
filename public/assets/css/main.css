@@ -489,13 +489,34 @@ figure[data-radius] img {
 
 /* Header --------------- */
 
+/* As âncoras (#section-horario, …) não ficam escondidas debaixo do cabeçalho fixo */
+html {
+    scroll-padding-top: calc(62px + 2 * var(--spacing-6));
+}
+
 .header {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
     z-index: 100;
     --text-color: var(--white);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Depois de fazer scroll, o cabeçalho fixo ganha fundo para continuar legível */
+body.scrolled .header,
+.como-funciona .header {
+    background-color: var(--linen);
+    --text-color: var(--black);
+}
+
+body.scrolled .header {
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
+}
+
+body.scrolled .logo path {
+    fill: var(--blue);
 }
 
 main > section:first-child {
@@ -508,6 +529,12 @@ main > section:first-child {
 
 .header-content {
     padding: var(--spacing-6) 0;
+    transition: padding 0.3s ease;
+}
+
+/* Depois de fazer scroll, o cabeçalho fica mais estreito */
+body.scrolled .header-content {
+    padding: var(--spacing-2) 0;
 }
 
 .header .logo {
@@ -571,6 +598,26 @@ header.header li.has-submenu svg {
     transition: 0.3s ease-in-out;
 }
 
+.lang-switch {
+    display: flex;
+    flex-shrink: 0;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+}
+
+.lang-switch:hover {
+    transform: scale(1.08);
+}
+
+.lang-switch img {
+    display: block;
+    width: 28px;
+    height: 20px;
+    object-fit: cover;
+}
+
 .menuButton {
     display: block;
     height: auto;
@@ -602,7 +649,12 @@ header.header li.has-submenu svg {
 
     header.header menu[aria-label="main-nav"] {
         align-items: center;
-        gap: 40px;
+        gap: clamp(12px, 2.5vw - 8px, 40px);
+        margin-left: auto;
+    }
+
+    .lang-switch {
+        margin-left: clamp(16px, 2.5vw - 8px, 32px);
     }
 
     header.header .submenu {
@@ -648,12 +700,32 @@ header.header li.has-submenu svg {
     }
 }
 
+@media screen and (min-width: 1100px) {
+    header.header menu[aria-label="main-nav"] > li {
+        white-space: nowrap;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .menuButton {
         z-index: 10;
         position: absolute;
-        top: calc(1.5rem + 26px);
+        top: calc(var(--spacing-6) + 26px);
         right: 0;
+        transition: top 0.3s ease;
+    }
+
+    .lang-switch {
+        z-index: 10;
+        position: absolute;
+        top: calc(var(--spacing-6) + 26px);
+        right: 50px;
+        transition: top 0.3s ease;
+    }
+
+    body.scrolled .menuButton,
+    body.scrolled .lang-switch {
+        top: calc(var(--spacing-2) + 26px);
     }
 
     body.menu-open .menuButton .top-bun {
@@ -1802,6 +1874,10 @@ body.segundo-ciclo {
     text-align: left;
 }
 
+[data-color-mode="light"] .link-box {
+    background-color: var(--white);
+}
+
 .link-box p {
     margin-bottom: 3rem;
 }
@@ -1816,6 +1892,29 @@ body.segundo-ciclo {
     .link-box {
         flex-basis: calc(25% - 16px * 3 / 4);
     }
+}
+
+/* Um só link, em linha: título e botão lado a lado (calendário) */
+.link-boxes-wrapper.inline {
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.link-boxes-wrapper.inline .link-box {
+    flex-basis: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 48px;
+}
+
+.link-boxes-wrapper.inline .link-box p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.link-boxes-wrapper.inline .button-container {
+    margin-top: 0;
 }
 
 
@@ -1927,9 +2026,14 @@ section.inset.oficinas > .container {
 
 /* Como Funciona Page --------------- */
 
-.como-funciona .header {
-    position: static;
-    --text-color: var(--black);
+.como-funciona main {
+    padding-top: calc(62px + 2 * var(--spacing-6));
+}
+
+@media screen and (max-width: 767px) {
+    .como-funciona main {
+        padding-top: calc(52px + 2 * var(--spacing-6));
+    }
 }
 
 .como-funciona .logo path {
@@ -1944,4 +2048,9 @@ section.inset.oficinas > .container {
 
 .segundo-ciclo .hero h1 {
     max-width: 13em;
+}
+/* Link da Política de Privacidade junto ao © no rodapé */
+.footer .logo-holder a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
