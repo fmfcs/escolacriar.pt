@@ -4,56 +4,56 @@
     font-family: "Lil-Grotesk";
     font-style: normal;
     font-weight: 700;
-    src: url("/assets/fonts/LilGrotesk-Bold.woff2") format('woff2');
+    src: url("../../assets/fonts/LilGrotesk-Bold.woff2") format('woff2');
 }
 
 @font-face {
     font-family: "Lil-Grotesk";
     font-style: normal;
     font-weight: 500;
-    src: url("/assets/fonts/LilGrotesk-Medium.woff2") format('woff2');
+    src: url("../../assets/fonts/LilGrotesk-Medium.woff2") format('woff2');
 }
 
 @font-face {
     font-family: "DM-Sans";
     font-style: normal;
     font-weight: 700;
-    src: url("/assets/fonts/DMSans-Bold.ttf") format('truetype');
+    src: url("../../assets/fonts/DMSans-Bold.ttf") format('truetype');
 }
 
 @font-face {
     font-family: "DM-Sans";
     font-style: normal;
     font-weight: 600;
-    src: url("/assets/fonts/DMSans-SemiBold.ttf") format('truetype');
+    src: url("../../assets/fonts/DMSans-SemiBold.ttf") format('truetype');
 }
 
 @font-face {
     font-family: "DM-Sans";
     font-style: normal;
     font-weight: 500;
-    src: url("/assets/fonts/DMSans-Medium.ttf") format('truetype');
+    src: url("../../assets/fonts/DMSans-Medium.ttf") format('truetype');
 }
 
 @font-face {
     font-family: "DM-Sans";
     font-style: normal;
     font-weight: 400;
-    src: url("/assets/fonts/DMSans-Regular.ttf") format('truetype');
+    src: url("../../assets/fonts/DMSans-Regular.ttf") format('truetype');
 }
 
 @font-face {
     font-family: "DM-Mono";
     font-style: normal;
     font-weight: 500;
-    src: url("/assets/fonts/DMMono-Medium.ttf") format('truetype');
+    src: url("../../assets/fonts/DMMono-Medium.ttf") format('truetype');
 }
 
 @font-face {
     font-family: "DM-Mono";
     font-style: normal;
     font-weight: 400;
-    src: url("/assets/fonts/DMMono-Regular.ttf") format('truetype');
+    src: url("../../assets/fonts/DMMono-Regular.ttf") format('truetype');
 }
 
 
@@ -315,7 +315,7 @@ ul > li::before {
     position: absolute;
     width: 1em;
     height: 1em;
-    background-image: url(/assets/icons/custom-bullet.svg);
+    background-image: url(../../assets/icons/custom-bullet.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -564,7 +564,7 @@ header.header li.has-submenu svg {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background-image: url("/assets/icons/menu-arrow.svg");
+    background-image: url("../../assets/icons/menu-arrow.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -977,15 +977,15 @@ section.inset.values-section .column:last-child ul {
 }
 
 .content-box.mauve ul > li::before {
-    background-image: url(/assets/icons/custom-bullet-mauve.svg);
+    background-image: url(../../assets/icons/custom-bullet-mauve.svg);
 }
 
 .content-box.yellow ul > li::before {
-    background-image: url(/assets/icons/custom-bullet-yellow.svg);
+    background-image: url(../../assets/icons/custom-bullet-yellow.svg);
 }
 
 .content-box.green ul > li::before {
-    background-image: url(/assets/icons/custom-bullet-green.svg);
+    background-image: url(../../assets/icons/custom-bullet-green.svg);
 }
 
 .content-box > *:first-child {
@@ -1268,7 +1268,7 @@ section.inset.values-section .column:last-child ul {
 
 /* About Intro --------------- */
 .about-intro {
-    background-image: url("/assets/icons/bg-mauve-terracota.svg"), url("/assets/icons/bg-cream-yellow.svg");
+    background-image: url("../../assets/icons/bg-mauve-terracota.svg"), url("../../assets/icons/bg-cream-yellow.svg");
     background-size: 22%, 35%;
     background-position: right 65%, left bottom;
 }
@@ -1286,7 +1286,7 @@ section.inset.values-section .column:last-child ul {
 
 @media screen and (max-width: 767px) {
     .about-intro {
-        background-image: url("/assets/icons/bg-cream-yellow.svg");
+        background-image: url("../../assets/icons/bg-cream-yellow.svg");
         background-size: 52%;
         background-position: left bottom;
     }
@@ -1549,15 +1549,15 @@ section.cycle-info.green ul {
 }
 
 section.cycle-info.mauve ul > li::before {
-    background-image: url(/assets/icons/custom-bullet-mauve.svg);
+    background-image: url(../../assets/icons/custom-bullet-mauve.svg);
 }
 
 section.cycle-info.yellow ul > li::before {
-    background-image: url(/assets/icons/custom-bullet-yellow.svg);
+    background-image: url(../../assets/icons/custom-bullet-yellow.svg);
 }
 
 section.cycle-info.green ul > li::before {
-    background-image: url(/assets/icons/custom-bullet-green.svg);
+    background-image: url(../../assets/icons/custom-bullet-green.svg);
 }
 
 @media screen and (max-width: 767px) {
