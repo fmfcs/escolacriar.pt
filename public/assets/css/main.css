@@ -650,7 +650,8 @@ header.header li.has-submenu svg {
     margin: 7px 0;
 }
 
-@media screen and (min-width: 768px) {
+/* Menu horizontal só a partir de 1100px; abaixo disso, hambúrguer (issue #18) */
+@media screen and (min-width: 1100px) {
     .header .logo {
         height: 62px;
     }
@@ -718,7 +719,7 @@ header.header li.has-submenu svg {
     }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1099px) {
     .menuButton {
         z-index: 10;
         position: absolute;

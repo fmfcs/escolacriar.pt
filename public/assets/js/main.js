@@ -26,7 +26,7 @@ window.addEventListener("scroll", function () {
 window.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".has-submenu").forEach(function (dropDown) {
         dropDown.addEventListener("click", function () {
-            if (window.innerWidth <= 767) {
+            if (window.innerWidth <= 1099) {
                 this.classList.toggle("active");
             }
         });
