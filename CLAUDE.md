@@ -22,7 +22,24 @@ Site estático em HTML, CSS e JavaScript, publicado no GitHub Pages. Não há pa
 
 ### Cabeçalho e rodapé repetidos
 
-Não há templates: o menu, o rodapé e o `<head>` estão copiados em todas as páginas HTML (9 páginas + 404). Uma alteração a esses elementos tem de ser aplicada em todos os ficheiros. Os dados de contacto da escola (morada, telefones, email, redes sociais) estão no rodapé.
+Não há templates nem build, por decisão deliberada: o `<head>`, o `<header>` com o menu, o `<footer>` e os `<script>` do fim estão copiados em todas as páginas HTML (9 páginas + `404.html`). Os dados de contacto da escola (morada, telefones, email, redes sociais) estão no rodapé.
+
+**Regra:** qualquer alteração a um desses blocos tem de ser aplicada em **todos** os ficheiros `index.html` e em `404.html`, ajustando o prefixo dos caminhos (`../` nas páginas em pastas, nenhum na home, `/` na 404). Entre páginas, esses blocos só diferem no `<title>`, na classe `active-page` do item de menu da página actual e nos prefixos.
+
+Depois de alterar o cabeçalho ou o rodapé, confirmar que ficaram iguais em todas as páginas:
+
+```sh
+cd public
+for b in header footer; do
+  for f in */index.html; do
+    diff -q <(sed -n "/<$b/,/<\/$b>/p" index.html | sed -E 's/ ?active-page//; s/ class=""//') \
+            <(sed -n "/<$b/,/<\/$b>/p" "$f" | sed -E 's#\.\./##g; s/ ?active-page//; s/ class=""//') >/dev/null \
+      || echo "$b diferente em $f"
+  done
+done
+```
+
+Sem output significa que está tudo sincronizado.
 
 ### Testar e publicar
 
