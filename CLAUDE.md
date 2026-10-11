@@ -19,6 +19,7 @@ Site estático em HTML, CSS e JavaScript, publicado no GitHub Pages. Não há pa
 - `404.html` — página de erro usada pelo Pages. É a única excepção: mantém caminhos absolutos (`/assets/...`, `/pt/sobre-nos/`), porque o Pages a serve em qualquer URL.
 - `assets/css/` — `normalize.css`, `variables.css` (design tokens: cores, fontes, espaçamentos), `utilities.css`, `main.css`. `assets/js/main.js` — único ficheiro de JavaScript (menu, cabeçalho fixo, Swiper, FAQ). Fontes locais em `assets/fonts/` (DM Sans, DM Mono, Lil Grotesk), ícones SVG em `assets/icons/`.
 - `media/pages/<pagina>/<hash>/` — fotos e PDFs servidos (regulamento, calendário, preçário). Os nomes das pastas com hash vêm do CMS original; podem ser mantidos. Imagens novas podem ir para `media/pages/<pagina>/` sem hash.
+- **Imagens têm sempre `alt`:** fotos da equipa com `Nome, função` (na língua da página), fotos da escola com uma descrição curta da cena, e `alt=""` nas decorativas (formas SVG, ícone, pixel). Ao adicionar uma imagem, preencher o `alt` em PT e em EN.
 - `CNAME` liga o domínio ao Pages. `.nojekyll` evita o processamento Jekyll.
 - Swiper 11 vem do CDN jsdelivr. O Meta Pixel (Facebook) está no `<head>` de todas as páginas. O mapa da página de contactos é um iframe do Google Maps.
 
