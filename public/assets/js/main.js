@@ -32,3 +32,31 @@ window.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+// Botão "Agende uma visita": no computador, abre a app do WhatsApp directamente
+// (sem a página intermédia do wa.me); sem app instalada, cai no WhatsApp Web.
+// No telemóvel o link wa.me já abre a app, por isso não se intervém.
+window.addEventListener("DOMContentLoaded", function () {
+    var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) return;
+    document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (link) {
+        link.addEventListener("click", function (event) {
+            var url = new URL(link.href);
+            var phone = url.pathname.replace("/", "");
+            var text = url.searchParams.get("text") || "";
+            var query = "phone=" + phone + "&text=" + encodeURIComponent(text);
+            event.preventDefault();
+            var opened = false;
+            var onHide = function () { opened = true; };
+            window.addEventListener("blur", onHide);
+            document.addEventListener("visibilitychange", onHide);
+            window.location.href = "whatsapp://send?" + query;
+            setTimeout(function () {
+                window.removeEventListener("blur", onHide);
+                document.removeEventListener("visibilitychange", onHide);
+                if (!opened && !document.hidden) {
+                    window.open("https://web.whatsapp.com/send?" + query, "_blank", "noopener");
+                }
+            }, 1500);
+        });
+    });
+});

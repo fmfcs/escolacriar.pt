@@ -62,6 +62,6 @@ Testar é abrir `public/pt/index.html` (ou `public/en/index.html`) no browser; n
 ## Avisos
 
 - Não existe formulário de contacto. O Pages não executa código de servidor: se um formulário for adicionado, tem de usar um serviço externo (Web3Forms, Formspree).
-- O botão "Agende uma visita" / "Book a visit" do menu abre o WhatsApp (`https://wa.me/351918993464` com mensagem pré-preenchida em PT ou EN, consoante a língua da página). O número é o de Teresa Noéme, o mesmo do rodapé. Está repetido em todas as páginas e na `404.html`: para mudar o número, substituir em todos os ficheiros.
+- O botão "Agende uma visita" / "Book a visit" do menu abre o WhatsApp (`https://wa.me/351918993464` com mensagem pré-preenchida em PT ou EN, consoante a língua da página). O número é o de Teresa Noéme, o mesmo do rodapé. Está repetido em todas as páginas e na `404.html`: para mudar o número, substituir em todos os ficheiros. No computador, `main.js` intercepta o clique e abre `whatsapp://send` (app instalada) com fallback para `web.whatsapp.com`, evitando a página intermédia do wa.me; no telemóvel o link wa.me abre a app directamente.
 - HTTPS é forçado nas definições do Pages; o certificado é renovado automaticamente pelo GitHub.
 - O DNS do domínio está na Dominios.pt/PTisp e o email no Google Workspace (registo MX). Qualquer alteração de DNS deve deixar o MX intacto.
