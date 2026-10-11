@@ -1,6 +1,7 @@
 /* Fonts --------------- */
 
 @font-face {
+    font-display: swap;
     font-family: "Lil-Grotesk";
     font-style: normal;
     font-weight: 700;
@@ -8,6 +9,7 @@
 }
 
 @font-face {
+    font-display: swap;
     font-family: "Lil-Grotesk";
     font-style: normal;
     font-weight: 500;
@@ -15,45 +17,51 @@
 }
 
 @font-face {
+    font-display: swap;
     font-family: "DM-Sans";
     font-style: normal;
     font-weight: 700;
-    src: url("../../assets/fonts/DMSans-Bold.ttf") format('truetype');
+    src: url("../../assets/fonts/DMSans-Bold.woff2") format('woff2');
 }
 
 @font-face {
+    font-display: swap;
     font-family: "DM-Sans";
     font-style: normal;
     font-weight: 600;
-    src: url("../../assets/fonts/DMSans-SemiBold.ttf") format('truetype');
+    src: url("../../assets/fonts/DMSans-SemiBold.woff2") format('woff2');
 }
 
 @font-face {
+    font-display: swap;
     font-family: "DM-Sans";
     font-style: normal;
     font-weight: 500;
-    src: url("../../assets/fonts/DMSans-Medium.ttf") format('truetype');
+    src: url("../../assets/fonts/DMSans-Medium.woff2") format('woff2');
 }
 
 @font-face {
+    font-display: swap;
     font-family: "DM-Sans";
     font-style: normal;
     font-weight: 400;
-    src: url("../../assets/fonts/DMSans-Regular.ttf") format('truetype');
+    src: url("../../assets/fonts/DMSans-Regular.woff2") format('woff2');
 }
 
 @font-face {
+    font-display: swap;
     font-family: "DM-Mono";
     font-style: normal;
     font-weight: 500;
-    src: url("../../assets/fonts/DMMono-Medium.ttf") format('truetype');
+    src: url("../../assets/fonts/DMMono-Medium.woff2") format('woff2');
 }
 
 @font-face {
+    font-display: swap;
     font-family: "DM-Mono";
     font-style: normal;
     font-weight: 400;
-    src: url("../../assets/fonts/DMMono-Regular.ttf") format('truetype');
+    src: url("../../assets/fonts/DMMono-Regular.woff2") format('woff2');
 }
 
 
