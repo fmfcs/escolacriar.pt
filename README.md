@@ -1,15 +1,15 @@
 # escolacriar.pt
 
-Site estático da Escola CRIAR, publicado no GitHub Pages.
+Site da Escola CRIAR. HTML estático, publicado no GitHub Pages.
 
-- Cada página vive numa pasta com um `index.html` (`sobre-nos/index.html` → `/sobre-nos`).
-- `assets/` tem CSS, JS, fontes e ícones; `media/` tem as fotos e PDFs.
-- `404.html` é a página de erro (mantém links absolutos, porque o Pages a serve em qualquer URL); `CNAME` liga o domínio ao Pages.
+- `public/` — o site. Só esta pasta é publicada.
+- `raw_img/` — fotos e PDFs originais em resolução completa, por página.
+- `CLAUDE.md` — descrição da estrutura e das convenções, para quem edita (com ou sem Claude Code).
 
 ## Testar localmente
 
-Os links são relativos, por isso basta abrir `index.html` no browser (duplo clique ou arrastar para o Chrome). Não é preciso servidor local.
+Os links são relativos: basta abrir `public/index.html` no browser. Não é preciso servidor.
 
 ## Publicar
 
-`git push` para `main`. O Pages actualiza em cerca de um minuto.
+`git push` para `main`. O workflow em `.github/workflows/pages.yml` publica `public/` em cerca de um minuto.
