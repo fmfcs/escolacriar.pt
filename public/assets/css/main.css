@@ -85,7 +85,6 @@ body {
 }
 
 section {
-    background-image: var(--bg_image);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: var(--bg-color);
